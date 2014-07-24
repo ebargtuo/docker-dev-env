@@ -1,0 +1,8 @@
+---
+- name: Start docker container for development environment
+  docker:
+    name: docker-dev-env     # use named container for idempotency
+    image: phusion/baseimage
+    privileged: True
+    state: running
+    command: "/sbin/my_init --enable-insecure-key"

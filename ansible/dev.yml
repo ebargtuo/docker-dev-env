@@ -1,0 +1,8 @@
+---
+- name: Prepare docker container for dev environment
+  hosts: 127.0.0.1
+  connection: local
+  user: vagrant
+
+  roles: 
+    - docker-container 
