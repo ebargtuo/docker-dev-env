@@ -18,3 +18,4 @@
   roles:
     - bootstrap
     - add-user
+    - apt-upgrade

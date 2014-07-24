@@ -1,0 +1,7 @@
+---
+- name: Install aptitude
+  command: apt-get -qq --yes install aptitude
+
+- name: Upgrade system packages and apt cache
+  apt: upgrade=safe update_cache=yes
+
