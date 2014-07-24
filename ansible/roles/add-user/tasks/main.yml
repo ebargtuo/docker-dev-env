@@ -1,0 +1,24 @@
+---
+- name: Create admin group
+  group: name=admin state=present
+
+- name: Allow admin group to sudo without password
+  lineinfile:
+    dest=/etc/sudoers
+    state=present
+    regexp='^%admin ALL\='
+    line='%admin ALL=(ALL) NOPASSWD:ALL'
+    validate='visudo -cf %s'
+
+- name: Create development environment user
+  user:
+    name=vagrant
+    shell=/bin/bash
+    groups=admin
+    append=yes
+    password=$6$rounds=100000$aeToEWdpYROoxarJ$6PVPIT5dwxFJ1lnGD28K4n2zUj1SGPQCoBmrKh4lbLng3y0/Wlb/t4x9JPGTva/Q9MOIRzNF3vKQsrdF1o.YS0 # add a (long, encrypted) password or key based ssh login does not work
+
+- name: Add public key for dev environment user
+  authorized_key: user=vagrant key="{{ lookup('file', '/home/vagrant/.ssh/docker-dev.pub') }}"
+
+
