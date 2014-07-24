@@ -6,3 +6,7 @@
     privileged: True
     state: running
     command: "/sbin/my_init --enable-insecure-key"
+
+- name: Add docker IPs to host group
+  add_host: hostname={{ item.NetworkSettings.IPAddress }} groupname=docker-dev
+  with_items: docker_containers
