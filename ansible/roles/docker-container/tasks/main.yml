@@ -10,3 +10,11 @@
 - name: Add docker IPs to host group
   add_host: hostname={{ item.NetworkSettings.IPAddress }} groupname=docker-dev
   with_items: docker_containers
+
+- name: Wait until we can ssh in to the new container(s)
+  command: ssh root@{{ item.NetworkSettings.IPAddress }} /bin/echo UP
+  register: connections
+  until: connections.stdout == "UP"
+  retries: 10
+  delay: 1
+  with_items: docker_containers
