@@ -12,7 +12,7 @@
   with_items: docker_containers
 
 - name: Wait until we can ssh in to the new container(s)
-  command: ssh root@{{ item.NetworkSettings.IPAddress }} /bin/echo UP
+  command: ssh -oStrictHostKeyChecking=no root@{{ item.NetworkSettings.IPAddress }} /bin/echo UP
   register: connections
   until: connections.stdout == "UP"
   retries: 10
