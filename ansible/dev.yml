@@ -6,9 +6,6 @@
 
   roles: 
     - docker-container 
-  tasks:
-    - name: debug
-      debug: msg="{{docker_containers[0].NetworkSettings.IPAddress}}"
 
 - name: Bootstrap dev container for further steps
   hosts: docker-dev
