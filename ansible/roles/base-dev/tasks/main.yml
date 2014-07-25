@@ -1,0 +1,7 @@
+---
+- name: Install base development packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - git
+    - ca-certificates
+
