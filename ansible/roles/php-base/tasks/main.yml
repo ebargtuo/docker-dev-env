@@ -5,3 +5,8 @@
     - php5-common
     - php5-cli
 
+- name: Install composer
+  command: curl https://getcomposer.org/composer.phar -o /usr/local/bin/composer creates=/usr/local/bin/composer
+
+- name: Set composer permissions
+  file: path=/usr/local/bin/composer state=file mode=0755
