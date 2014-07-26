@@ -1,5 +1,5 @@
 ---
-- include: dev.yml
+- include: base.yml
 
 - name: Install general development packages into container
   hosts: docker-dev
