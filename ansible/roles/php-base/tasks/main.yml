@@ -1,0 +1,7 @@
+---
+- name: Install base packages for php development environment
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - php5-common
+    - php5-cli
+
