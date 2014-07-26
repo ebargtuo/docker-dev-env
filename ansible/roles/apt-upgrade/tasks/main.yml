@@ -1,6 +1,6 @@
 ---
 - name: Install aptitude
-  command: apt-get -qq --yes install aptitude
+  command: apt-get -qq --yes install aptitude creates=/usr/bin/aptitude
 
 - name: Upgrade system packages and apt cache
   apt: upgrade=safe update_cache=yes
