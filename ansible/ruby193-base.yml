@@ -1,0 +1,9 @@
+---
+- include: dev-base.yml
+
+- name: Install ruby 1.9.3 development packages into container
+  hosts: docker-dev
+  user: root
+
+  roles:
+    - ruby193-base

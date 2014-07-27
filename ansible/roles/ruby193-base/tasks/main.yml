@@ -1,0 +1,5 @@
+---
+- name: Install base packages for ruby development environment
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - ruby1.9.1
