@@ -1,0 +1,9 @@
+---
+- name: Install base packages for nodejs development environment
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - nodejs
+    - npm
+
+- name: Link ubuntu nodejs execute to node
+  file: src=/usr/bin/nodejs dest=/usr/local/bin/node state=link

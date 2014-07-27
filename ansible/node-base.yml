@@ -1,0 +1,9 @@
+---
+- include: dev-base.yml
+
+- name: Install node development packages into container
+  hosts: docker-dev
+  user: root
+
+  roles:
+    - node-base
