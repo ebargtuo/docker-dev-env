@@ -1,0 +1,6 @@
+---
+- name: Stop and remove docker container for development environment
+  docker:
+    name: docker-dev-env     # use named container for idempotency
+    image: phusion/baseimage
+    state: absent
