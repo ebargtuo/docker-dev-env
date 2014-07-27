@@ -1,0 +1,9 @@
+---
+- include: node-base.yml
+
+- name: Install yeoman into container
+  hosts: docker-dev
+  user: root
+
+  roles:
+    - node-yeoman

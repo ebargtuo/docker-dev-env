@@ -1,0 +1,3 @@
+---
+- name: Install yeoman packages
+  npm: name=yo global=yes state=present
