@@ -1,0 +1,5 @@
+---
+- include: node-yeoman.yml
+  vars:
+    yeoman_generators:
+      - generator-webapp
