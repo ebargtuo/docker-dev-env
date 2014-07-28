@@ -1,0 +1,3 @@
+---
+# default to no generators
+yeoman_generators:
