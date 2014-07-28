@@ -1,0 +1,3 @@
+---
+# default to no base gems
+ruby_gems:

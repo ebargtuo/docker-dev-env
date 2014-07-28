@@ -3,3 +3,8 @@
   apt: name={{ item }} state=present update_cache=yes
   with_items:
     - ruby1.9.1
+
+- name: Install required gems
+  gem: name={{ item }} state=present
+  with_items: with_gems
+  when: ruby_gems
