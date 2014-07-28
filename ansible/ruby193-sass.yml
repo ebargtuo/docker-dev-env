@@ -1,0 +1,6 @@
+---
+- name: Use ruby base with sass gem
+  include: ruby193-base.yml
+  vars:
+    ruby_gems:
+      - sass
