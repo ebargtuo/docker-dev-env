@@ -1,0 +1,6 @@
+---
+#Name of development environment container
+docker_dev_container: docker-dev-env
+
+# Name of development environment user
+docker_dev_user: vagrant

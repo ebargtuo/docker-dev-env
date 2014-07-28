@@ -1,7 +1,7 @@
 ---
 - name: Start docker container for development environment
   docker:
-    name: docker-dev-env     # use named container for idempotency
+    name: "{{ docker_dev_container }}" # use named container for idempotency
     image: phusion/baseimage
     privileged: True
     state: running

@@ -12,7 +12,7 @@
 
 - name: Create development environment user
   user:
-    name=vagrant
+    name={{ docker_dev_user }}
     shell=/bin/bash
     groups=admin
     append=yes
