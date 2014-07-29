@@ -21,3 +21,11 @@
   args:
     chdir: yo-webapp
     creates: .yo-rc.json
+
+- name: Set app grunt server hostname to allow access from outside container
+  lineinfile:
+    dest: yo-webapp/Gruntfile.js
+    backrefs: yes
+    regexp: '(\s*)hostname: ''localhost'''
+    line: '\1hostname: ''0.0.0.0'''
+    state: present
