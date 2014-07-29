@@ -2,6 +2,16 @@
 - name: Create project directory
   file: name=yo-webapp state=directory
 
+# avoid interactive prompts by creating config files with answers
+- name: Create insight config directory
+  file: path=.config/configstore state=directory
+
+- name: Create insight configuration files
+  template: src={{ item }} dest=.config/configstore/{{ item }}
+  with_items:
+    - insight-yo.yml
+    - insight-bower.yml
+
 - name: Create yeoman project with webapp generator
   # as yo has limited support for unattended use, pipe answers to questions
   # with `yes`
