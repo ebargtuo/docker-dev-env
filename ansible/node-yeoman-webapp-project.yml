@@ -3,3 +3,10 @@
   vars:
     yeoman_generators:
       - generator-webapp
+
+- name: Create yeoman project in container
+  hosts: docker-dev
+  user: "{{ docker_dev_user }}"
+
+  roles:
+    - node-yeoman-webapp-project

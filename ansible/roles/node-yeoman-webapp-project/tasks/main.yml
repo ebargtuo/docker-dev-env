@@ -1,0 +1,13 @@
+---
+- name: Create project directory
+  file: name=yo-webapp state=directory
+
+- name: Create yeoman project with webapp generator
+  # as yo has limited support for unattended use, pipe answers to questions
+  # with `yes`
+  # Move down, select Sass, move down, select Modernizr, no to `libsass`
+  # TODO: evaluate other options e.g. `expect`
+  shell: yes "j j N" | yo webapp
+  args:
+    chdir: yo-webapp
+    creates: .yo-rc.json
