@@ -1,0 +1,5 @@
+---
+- name: Create symfony project
+  command: composer --no-interaction create-project symfony/framework-standard-edition php-symfony-project/ '~2.5'
+  args:
+    creates: php-symfony-project/composer.lock
