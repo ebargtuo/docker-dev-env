@@ -5,6 +5,20 @@
     - php5-common
     - php5-cli
 
+- name: Set some configuration values in php.ini
+  lineinfile:
+    dest: /etc/php5/cli/php.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: ';?date.timezone =.*$'
+      line: 'date.timezone = Europe/Rome'
+    - regexp: ';?display_errors =.*$'
+      line: 'display_errors = On'
+    - regexp: ';?error_reporting =.*$'
+      line: 'error_reporting = E_ALL'
+
 - name: Install composer
   command: curl https://getcomposer.org/composer.phar -o /usr/local/bin/composer creates=/usr/local/bin/composer
 
