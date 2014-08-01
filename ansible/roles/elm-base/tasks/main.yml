@@ -1,0 +1,12 @@
+---
+- name: Install dependency packages for elm development environment
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - libncurses5-dev
+  sudo: yes
+
+- name: Update cabal package manager
+  command: cabal update creates=.cabal
+
+- name: Install base packages for elm development environment
+  command: cabal install elm elm-server elm-repl elm-get creates=.cabal/bin/elm

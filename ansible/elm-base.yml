@@ -1,0 +1,9 @@
+---
+- include: haskell-base.yml
+
+- name: Install elm development packages into container
+  hosts: docker-dev
+  user: "{{ docker_dev_user }}"
+
+  roles:
+    - elm-base
