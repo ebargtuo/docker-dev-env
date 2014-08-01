@@ -10,3 +10,9 @@
 
 - name: Install base packages for elm development environment
   command: cabal install elm elm-server elm-repl elm-get creates=.cabal/bin/elm
+
+- name: Add elm commands to path
+  lineinfile:
+    dest: .profile
+    line: PATH="$PATH:$HOME/.cabal/bin"
+    state: present
