@@ -1,0 +1,9 @@
+---
+- name: Transfer slim project files to container
+  copy: src=php-slim-project dest=.
+
+- name: Install slim project dependencies
+  command: composer --no-interaction install
+  args:
+    chdir: php-slim-project
+    creates: php-slim-project/composer.lock

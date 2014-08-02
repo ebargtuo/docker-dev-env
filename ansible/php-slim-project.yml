@@ -1,0 +1,9 @@
+---
+- include: php-base.yml
+
+- name: Create slim project in container
+  hosts: docker-dev
+  user: "{{ docker_dev_user }}"
+
+  roles:
+    - php-slim-project
