@@ -1,0 +1,5 @@
+{% if docker_dev_git_user_email and docker_dev_git_user_name %}
+[user]
+	email = {{ docker_dev_git_user_email }}
+	name = {{ docker_dev_git_user_name }}
+{% endif %}

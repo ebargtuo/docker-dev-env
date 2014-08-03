@@ -4,3 +4,7 @@ docker_dev_container: docker-dev-env
 
 # Name of development environment user
 docker_dev_user: vagrant
+
+# Name and email of git user
+#docker_dev_git_user_email: user@example.com
+#docker_dev_git_user_name: user

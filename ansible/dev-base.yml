@@ -3,7 +3,7 @@
 
 - name: Install general development packages into container
   hosts: docker-dev
-  user: root
+  user: "{{ docker_dev_user }}"
 
   roles:
     - base-dev
