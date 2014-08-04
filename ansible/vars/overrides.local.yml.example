@@ -1,0 +1,10 @@
+---
+# If you wish to override any variables, copy this file to
+# `overrides.local.yml` and edit the values as appropriate. Run
+# `ansible` as:
+#
+#    ansible-playbook playbook.yml --extra-vars "@vars/overrides.local.yml"
+
+# Name and email of git user
+#docker_dev_git_user_email: user@example.com
+#docker_dev_git_user_name: user
