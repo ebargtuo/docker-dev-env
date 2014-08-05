@@ -19,6 +19,8 @@
       line: 'display_errors = On'
     - regexp: ';?error_reporting =.*$'
       line: 'error_reporting = E_ALL'
+    - regexp: ';?variables_order =.*$'
+      line: 'variables_order = "EGPCS"'
 
 - name: Install composer
   command: curl https://getcomposer.org/composer.phar -o /usr/local/bin/composer creates=/usr/local/bin/composer
