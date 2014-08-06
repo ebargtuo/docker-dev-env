@@ -21,6 +21,14 @@
     ssh_key_file=.ssh/id_rsa_git_host
     ssh_key_comment={{ docker_dev_user }}.git@docker
     password=$6$rounds=100000$aeToEWdpYROoxarJ$6PVPIT5dwxFJ1lnGD28K4n2zUj1SGPQCoBmrKh4lbLng3y0/Wlb/t4x9JPGTva/Q9MOIRzNF3vKQsrdF1o.YS0 # add a (long, encrypted) password or key based ssh login does not work
+  register: docker_dev_user_git_key
+
+- name: Lookup docker container gateway
+  set_fact:
+    docker_container_gateway: "{{ lookup('pipe', ['docker inspect -f \"{{ .NetworkSettings.Gateway }}\" ', docker_dev_container]|join) }}"
+
+- name: Add container git only key to ssh config
+  template: src=config.ssh dest=/home/{{ docker_dev_user }}/.ssh/config
 
 - name: Add public key for dev environment user
   authorized_key: user=vagrant key="{{ lookup('file', '/home/vagrant/.ssh/docker-dev.pub') }}"

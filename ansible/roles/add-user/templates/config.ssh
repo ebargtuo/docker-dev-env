@@ -1,0 +1,3 @@
+# git only access to host
+Host {{ docker_container_gateway }}
+IdentityFile ~/.ssh/id_rsa_git_host
