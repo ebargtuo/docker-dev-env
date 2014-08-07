@@ -31,7 +31,9 @@
   template: src=config.ssh dest=/home/{{ docker_dev_user }}/.ssh/config
 
 - name: Add public key for dev environment user
-  authorized_key: user=vagrant key="{{ lookup('file', '/home/vagrant/.ssh/docker-dev.pub') }}"
+  authorized_key:
+    user={{ docker_dev_user }}
+    key="{{ lookup('file', '/home/vagrant/.ssh/docker-dev.pub') }}"
 
 - name: Add container git only ssh key to authorized keys on host
   local_action:
