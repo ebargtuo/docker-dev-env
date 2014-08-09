@@ -21,6 +21,31 @@
     mode=0600
     state=file
 
+# TODO: assess better ways to add these lines
+- name: Add container phusion/baseimage private key placeholder to ssh config
+  lineinfile:
+    dest: /home/vagrant/.ssh/config
+    line: "{{ item.line }}"
+    state: present
+    create: yes
+    backup: yes
+  with_items:
+    - line: "# docker-dev-env --generated block--"
+
+- name: Add container phusion/baseimage private key to ssh config
+  lineinfile:
+    dest: /home/vagrant/.ssh/config
+    insertafter: "{{ item.insertafter }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - insertafter: 
+      line: "# docker-dev-env --generated block--"
+    - insertafter: "# docker-dev-env --generated block--"
+      line: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
+    - insertafter: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
+      line: "IdentityFile ~/.ssh/phusion_baseimage_insecure_key"
+
 - name: Wait until we can ssh in to the new container(s)
   command: ssh -oStrictHostKeyChecking=no root@{{ item.NetworkSettings.IPAddress }} /bin/echo UP
   register: connections
