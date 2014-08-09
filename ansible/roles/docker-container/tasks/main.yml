@@ -11,6 +11,16 @@
   add_host: hostname={{ item.NetworkSettings.IPAddress }} groupname=docker-dev
   with_items: docker_containers
 
+- name: Install phusion/baseimage insecure private key on host
+  command: curl -o /home/vagrant/.ssh/phusion_baseimage_insecure_key -fSL https://github.com/phusion/baseimage-docker/raw/master/image/insecure_key
+    creates=/home/vagrant/.ssh/phusion_baseimage_insecure_key
+
+- name: Set 0600 permissions on phusion/baseimage private key
+  file:
+    path=/home/vagrant/.ssh/phusion_baseimage_insecure_key
+    mode=0600
+    state=file
+
 - name: Wait until we can ssh in to the new container(s)
   command: ssh -oStrictHostKeyChecking=no root@{{ item.NetworkSettings.IPAddress }} /bin/echo UP
   register: connections
