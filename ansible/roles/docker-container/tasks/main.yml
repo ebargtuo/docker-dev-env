@@ -36,14 +36,15 @@
   lineinfile:
     dest: /home/vagrant/.ssh/config
     insertafter: "{{ item.insertafter }}"
+    regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
   with_items:
-    - insertafter: 
-      line: "# docker-dev-env --generated block--"
     - insertafter: "# docker-dev-env --generated block--"
+      regexp: "^Host "
       line: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
     - insertafter: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
+      regexp: "^IdentityFile "
       line: "IdentityFile ~/.ssh/phusion_baseimage_insecure_key"
 
 - name: Wait until we can ssh in to the new container(s)
