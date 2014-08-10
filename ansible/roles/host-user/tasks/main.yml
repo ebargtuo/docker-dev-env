@@ -1,0 +1,38 @@
+---
+- name: Generate ssh key for container user
+  user:
+    name=vagrant
+    generate_ssh_key=yes
+    ssh_key_file=/home/vagrant/.ssh/{{ docker_dev_container }}-user
+    state=present
+
+- name: Capture docker dev container IP address
+  command: docker inspect -f '{{ .NetworkSettings.IPAddress }}' docker-dev-env
+  register: docker_inspect
+
+# TODO: assess better ways to add these lines
+- name: Add container user private key placeholder to ssh config
+  lineinfile:
+    dest: /home/vagrant/.ssh/config
+    line: "{{ item.line }}"
+    state: present
+    create: yes
+    backup: yes
+  with_items:
+    - line: "# docker-dev-env --generated block--"
+
+- name: Add container user private key to ssh config
+  lineinfile:
+    dest: /home/vagrant/.ssh/config
+    insertafter: "{{ item.insertafter }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - insertafter: "# docker-dev-env --generated block--"
+      regexp: "^Host "
+      line: "Host {{ docker_inspect.stdout }}"
+    - insertafter: "Host {{ docker_inspect.stdout }}"
+      regexp: "^IdentityFile ~/.ssh/{{ docker_dev_container }}-user"
+      line: "IdentityFile ~/.ssh/{{ docker_dev_container }}-user"
+

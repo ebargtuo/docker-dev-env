@@ -44,7 +44,7 @@
       regexp: "^Host "
       line: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
     - insertafter: "Host {{ docker_containers[0].NetworkSettings.IPAddress }}"
-      regexp: "^IdentityFile "
+      regexp: "^IdentityFile ~/.ssh/phusion_baseimage_insecure_key"
       line: "IdentityFile ~/.ssh/phusion_baseimage_insecure_key"
 
 - name: Wait until we can ssh in to the new container(s)
@@ -54,3 +54,4 @@
   retries: 10
   delay: 1
   with_items: docker_containers
+

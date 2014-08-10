@@ -33,7 +33,7 @@
 - name: Add public key for dev environment user
   authorized_key:
     user={{ docker_dev_user }}
-    key="{{ lookup('file', '/home/vagrant/.ssh/docker-dev.pub') }}"
+    key="{{ lookup('file', ['/home/vagrant/.ssh/', docker_dev_container, '-user.pub']|join) }}"
 
 - name: Add container git only ssh key to authorized keys on host
   local_action:

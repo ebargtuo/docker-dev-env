@@ -6,6 +6,7 @@
 
   roles: 
     - docker-container 
+    - host-user
 
 - name: Bootstrap dev container for further steps
   hosts: docker-dev
