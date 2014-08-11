@@ -3,3 +3,7 @@
 	email = {{ docker_dev_git_user_email }}
 	name = {{ docker_dev_git_user_name }}
 {% endif %}
+[alias]
+        st = status
+        co = checkout
+
