@@ -1,0 +1,7 @@
+.gitignore -crlf
+.gitattributes -crlf
+.yml -crlf
+.j2 -crlf
+.md -crlf
+Vagrantfile -crlf
+
