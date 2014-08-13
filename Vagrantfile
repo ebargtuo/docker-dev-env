@@ -27,4 +27,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Default value: false
   # config.ssh.forward_agent = true
 
+  config.vm.provision "shell", path: "provisioning/bootstrap-ansible-host.sh"
+
 end
