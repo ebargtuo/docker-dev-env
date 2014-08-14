@@ -22,3 +22,14 @@
     update_cache=yes
     state=present
 
+- name: Create docker group
+  group:
+    name=docker
+    state=present
+
+- name: Add host VM user to docker group
+  user:
+    name=vagrant
+    append=yes
+    groups=docker
+
