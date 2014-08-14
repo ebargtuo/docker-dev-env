@@ -29,4 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", path: "provisioning/bootstrap-ansible-host.sh"
 
+  config.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/host.yml"
+
 end
