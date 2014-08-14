@@ -1,0 +1,6 @@
+---
+- name: Install docker-py required by ansible docker modules
+  pip:
+    name=docker-py
+    state=present
+

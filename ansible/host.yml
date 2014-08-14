@@ -9,4 +9,5 @@
     - apt-upgrade
     - docker
     - pip
+    - ansible-docker
 
