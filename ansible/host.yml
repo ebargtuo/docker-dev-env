@@ -8,4 +8,5 @@
   roles:
     - apt-upgrade
     - docker
+    - pip
 

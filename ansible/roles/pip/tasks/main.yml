@@ -1,0 +1,15 @@
+---
+- name: Create directory for pip install script
+  file:
+    path=/opt/get-pip
+    mode=0700
+    state=directory
+
+- name: Get pip install script
+  command: curl https://bootstrap.pypa.io/get-pip.py -o /opt/get-pip/get-pip.py
+    creates=/opt/get-pip/get-pip.py
+
+- name: Run pip install script
+  command: python /opt/get-pip/get-pip.py
+    creates=/usr/local/bin/pip
+
