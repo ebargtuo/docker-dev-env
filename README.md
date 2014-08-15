@@ -13,9 +13,11 @@ The easiest way to get started is in a
 [Vagrant](http://www.vagrantup.com/)
 virtual machine.
 
-The container needs to have
-[Docker](https://www.docker.com/) and
-[Ansible](http://docs.ansible.com/index.html) installed.
+The host environment needs to have
+[Docker](https://docs.docker.com/installation/) and
+[Ansible](http://docs.ansible.com/intro_installation.html) installed. For the
+Docker modules in Ansible, there is an additional dependency on
+[`docker-py`](https://github.com/docker/docker-py).
 
 Clone the repo inside the container and, in the `ansible` directory, run:
 
@@ -23,6 +25,18 @@ Clone the repo inside the container and, in the `ansible` directory, run:
 
 Change `playbook.yml` to one of the included playbooks for the
 development environment required.
+
+You can connect to the docker development container with the `connect.sh`
+script in the `scripts` directory.
+
+    scripts/connect.sh [CONTAINERNAME]
+
+If you changed the default `CONTAINERNAME`, you must specify the name.
+
+### With Vagrant ###
+
+A `Vagrantfile` is included which sets up a host VM and takes care of
+installing the required dependencies.
 
 ## Licence ##
 
