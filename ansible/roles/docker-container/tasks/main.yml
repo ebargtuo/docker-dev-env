@@ -3,7 +3,6 @@
   docker:
     name: "{{ docker_dev_container }}" # use named container for idempotency
     image: phusion/baseimage
-    privileged: True
     state: running
     command: "/sbin/my_init --enable-insecure-key"
 
