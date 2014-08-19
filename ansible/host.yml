@@ -8,6 +8,7 @@
   roles:
     - apt-upgrade
     - docker
+    - curl
     - pip
     - ansible-docker
 
