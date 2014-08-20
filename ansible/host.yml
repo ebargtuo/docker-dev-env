@@ -11,4 +11,5 @@
     - curl
     - pip
     - ansible-docker
+    - git
 
