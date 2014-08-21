@@ -6,8 +6,8 @@
 
 - name: Set git config file values
   template:
-    src=.gitconfig
-    dest=/home/{{ docker_dev_user }}
+    src=gitconfig.j2
+    dest=/home/{{ docker_dev_user }}/.gitconfig
     owner={{ docker_dev_user }}
     group={{ docker_dev_user }}
 

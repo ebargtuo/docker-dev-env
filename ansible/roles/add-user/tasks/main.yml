@@ -28,7 +28,7 @@
     docker_container_gateway: "{{ lookup('pipe', ['docker inspect -f \"{{ .NetworkSettings.Gateway }}\" ', docker_dev_container]|join) }}"
 
 - name: Add container git only key to ssh config
-  template: src=config.ssh dest=/home/{{ docker_dev_user }}/.ssh/config
+  template: src=config.ssh.j2 dest=/home/{{ docker_dev_user }}/.ssh/config
 
 - name: Add public key for dev environment user
   authorized_key:
