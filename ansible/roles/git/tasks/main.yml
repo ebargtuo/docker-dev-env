@@ -11,6 +11,14 @@
     owner={{ docker_dev_user }}
     group={{ docker_dev_user }}
 
+# TODO: consider moving to different role as not entirely git specific
+- name: Add .bash_profile to set coloured git compatible prompt
+  template:
+    src=bash_profile
+    dest="/home/{{ docker_dev_user }}/.bash_profile"
+    owner={{ docker_dev_user }}
+    group={{ docker_dev_user }}
+
 - name: Add git-prompt and git-completions to user directory
   copy:
     src={{ item.src }}
