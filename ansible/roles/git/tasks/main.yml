@@ -11,13 +11,12 @@
     owner={{ docker_dev_user }}
     group={{ docker_dev_user }}
 
-# TODO: consider moving to different role as not entirely git specific
-- name: Add .bash_profile to set coloured git compatible prompt
-  template:
-    src=bash_profile
-    dest="/home/{{ docker_dev_user }}/.bash_profile"
+- name: Add directory for custom bash settings
+  file:
+    path=/home/{{ docker_dev_user }}/.bash
     owner={{ docker_dev_user }}
     group={{ docker_dev_user }}
+    state=directory
 
 - name: Add git-prompt and git-completions to user directory
   copy:
@@ -30,6 +29,8 @@
       dest: .git-prompt.sh
     - src: /usr/share/bash-completion/completions/git
       dest: .git-completion.sh
+    - src: custom-prompt.sh
+      dest: .bash/.custom-prompt.sh
 
 - name: Add git-prompt and git-completions to bash_profile
   lineinfile:
@@ -42,4 +43,5 @@
   with_items:
     - ". ~/.git-prompt.sh"
     - ". ~/.git-completion.sh"
+    - ". ~/.bash/.custom-prompt.sh"
 
