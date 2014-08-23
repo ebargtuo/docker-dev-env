@@ -7,7 +7,7 @@
   file: path=~/.config/configstore state=directory
 
 - name: Create insight configuration files
-  template: src={{ item }} dest=~/.config/configstore/{{ item }}
+  copy: src={{ item }} dest=~/.config/configstore/{{ item }}
   with_items:
     - insight-yo.yml
     - insight-bower.yml
