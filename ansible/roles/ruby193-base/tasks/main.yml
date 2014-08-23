@@ -6,5 +6,5 @@
 
 - name: Install required gems
   gem: name={{ item }} state=present
-  with_items: with_gems
+  with_items: ruby_gems
   when: ruby_gems
