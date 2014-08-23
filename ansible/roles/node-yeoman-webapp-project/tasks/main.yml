@@ -1,13 +1,13 @@
 ---
 - name: Create project directory
-  file: name=yo-webapp state=directory
+  file: name=~/yo-webapp state=directory
 
 # avoid interactive prompts by creating config files with answers
 - name: Create insight config directory
-  file: path=.config/configstore state=directory
+  file: path=~/.config/configstore state=directory
 
 - name: Create insight configuration files
-  template: src={{ item }} dest=.config/configstore/{{ item }}
+  template: src={{ item }} dest=~/.config/configstore/{{ item }}
   with_items:
     - insight-yo.yml
     - insight-bower.yml
@@ -19,12 +19,12 @@
   # TODO: evaluate other options e.g. `expect`
   shell: yes "j j N" | yo webapp
   args:
-    chdir: yo-webapp
+    chdir: ~/yo-webapp
     creates: .yo-rc.json
 
 - name: Set app grunt server hostname to allow access from outside container
   lineinfile:
-    dest: yo-webapp/Gruntfile.js
+    dest: ~/yo-webapp/Gruntfile.js
     backrefs: yes
     regexp: '(\s*)hostname: ''localhost'''
     line: '\1hostname: ''0.0.0.0'''
