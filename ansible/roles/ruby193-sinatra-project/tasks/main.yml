@@ -1,0 +1,10 @@
+---
+- name: Transfer sinatra project files to container
+  copy: src=ruby193-sinatra-project dest=.
+
+- name: Install sinatra project dependencies
+  command: bundle install
+  args:
+    chdir: ruby193-sinatra-project
+    creates: Gemfile.lock
+

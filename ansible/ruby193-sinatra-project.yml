@@ -1,0 +1,14 @@
+---
+- name: Use ruby base with bundler gem
+  include: ruby193-base.yml
+  vars:
+    ruby_gems:
+      - bundler
+
+- name: Create sinatra project in container
+  hosts: docker-dev
+  user: "{{ docker_dev_user }}"
+
+  roles:
+    - ruby193-sinatra-project
+
