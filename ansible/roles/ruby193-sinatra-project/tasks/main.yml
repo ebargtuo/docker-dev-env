@@ -3,7 +3,7 @@
   copy: src=ruby193-sinatra-project dest=.
 
 - name: Install sinatra project dependencies
-  command: bundle install
+  command: bundle install --path vendor/bundle
   args:
     chdir: ruby193-sinatra-project
     creates: Gemfile.lock
