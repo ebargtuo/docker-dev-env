@@ -19,16 +19,31 @@
     state=directory
 
 - name: Add git-prompt and git-completions to user directory
+  command: cp "{{ item.src }}" "/home/{{ docker_dev_user }}/{{ item.dest }}"
+    creates="/home/{{ docker_dev_user }}/{{ item.dest }}"
+  with_items:
+    - src: /usr/lib/git-core/git-sh-prompt
+      dest: .git-prompt.sh
+    - src: /usr/share/bash-completion/completions/git
+      dest: .git-completion.sh
+
+- name: Set git-prompt and git-completions permissions
+  file:
+    path="/home/{{ docker_dev_user }}/{{ item }}"
+    owner={{ docker_dev_user }}
+    group={{ docker_dev_user }}
+  with_items:
+    - .git-prompt.sh
+    - .git-completion.sh
+
+
+- name: Add custom bash prompt
   copy:
     src={{ item.src }}
     dest="/home/{{ docker_dev_user }}/{{ item.dest }}"
     owner={{ docker_dev_user }}
     group={{ docker_dev_user }}
   with_items:
-    - src: /usr/lib/git-core/git-sh-prompt
-      dest: .git-prompt.sh
-    - src: /usr/share/bash-completion/completions/git
-      dest: .git-completion.sh
     - src: custom-prompt.sh
       dest: .bash/.custom-prompt.sh
 
