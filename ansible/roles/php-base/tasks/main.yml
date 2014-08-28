@@ -6,6 +6,17 @@
     - php5-cli
     - php5-intl
 
+- name: Install optional mcrypt package for php development environment
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - php5-mcrypt
+  when: with_php5_mcrypt
+
+- name: Activate mcrypt
+  command: php5enmod mcrypt
+    creates=/var/lib/php5/modules/cli/enabled_by_admin/mcrypt
+  when: with_php5_mcrypt
+
 - name: Set some configuration values in php.ini
   lineinfile:
     dest: /etc/php5/cli/php.ini

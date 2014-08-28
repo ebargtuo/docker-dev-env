@@ -1,0 +1,3 @@
+---
+# default to no php5-mcrypt
+with_php5_mcrypt:

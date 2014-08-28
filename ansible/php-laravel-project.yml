@@ -1,0 +1,11 @@
+---
+- include: php-base.yml
+  vars:
+    - with_php5_mcrypt: yes
+
+- name: Create laravel project in container
+  hosts: docker-dev
+  user: "{{ docker_dev_user }}"
+
+  roles:
+    - php-laravel-project

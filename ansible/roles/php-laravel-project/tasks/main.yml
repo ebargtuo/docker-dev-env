@@ -1,0 +1,5 @@
+---
+- name: Create laravel project
+  command: composer --no-interaction create-project laravel/laravel php-laravel-project/ --prefer-dist
+  args:
+    creates: php-laravel-project/composer.lock
