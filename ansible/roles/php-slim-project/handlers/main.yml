@@ -1,0 +1,10 @@
+---
+- name: Restart slim app
+  command: ~/php-slim-project/init.sh status
+  register: status
+  notify:
+    - Restart slim app command
+
+- name: Restart slim app command
+  command: "~/php-slim-project/init.sh {% if status.stdout|search('running') %}restart{% elif status.stdout|search('stopped')%}start{% endif %}"
+

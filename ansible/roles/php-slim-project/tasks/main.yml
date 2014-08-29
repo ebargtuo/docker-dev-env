@@ -7,3 +7,5 @@
   args:
     chdir: php-slim-project
     creates: php-slim-project/composer.lock
+  notify:
+    - Restart slim app
