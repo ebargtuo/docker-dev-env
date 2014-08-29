@@ -18,7 +18,7 @@ case "$1" in
       echo "$name" is running...
       exit 0
     fi
-    eval "$cmd" >> "$log" 2>&1 &
+    nohup $cmd >> "$log" 2>&1 &
     echo Starting "$name"...
     ;;
 
@@ -37,7 +37,7 @@ case "$1" in
       exit 0
     fi
     kill -s TERM "$pid"
-    eval "$cmd" >> "$log" 2>&1 &
+    nohup $cmd >> "$log" 2>&1 &
     echo Restarting "$name"...
     ;;
 
