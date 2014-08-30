@@ -1,0 +1,7 @@
+---
+- name: Add logs directory for user services
+  file:
+    path=/home/{{ docker_dev_user }}/.logs
+    owner={{ docker_dev_user }}
+    group={{ docker_dev_user }}
+    state=directory

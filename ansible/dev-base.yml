@@ -8,4 +8,4 @@
   roles:
     - curl
     - git
-
+    - dev-base
