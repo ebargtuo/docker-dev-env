@@ -1,11 +1,18 @@
 ---
 - name: Create laravel project
-  command: composer --no-interaction create-project laravel/laravel php-laravel-project/ --prefer-dist
+  command: composer --no-interaction create-project laravel/laravel php-laravel-project/ --no-install --no-scripts
   args:
-    creates: php-laravel-project/composer.lock
+    creates: ~/php-laravel-project/composer.json
 
 - name: Add install script
   copy:
     src=init.sh
     dest=~/php-laravel-project
     mode=0700
+
+- name: Install laravel project
+  command: composer --no-interaction install --prefer-dist
+    chdir=~/php-laravel-project
+    creates=~/php-laravel-project/composer.lock
+  notify:
+    - Restart laravel app

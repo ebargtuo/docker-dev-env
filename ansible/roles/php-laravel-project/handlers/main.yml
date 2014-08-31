@@ -1,0 +1,11 @@
+---
+- name: Restart laravel app
+  command: ~/php-laravel-project/init.sh status
+  register: status
+  notify:
+    - Restart laravel app command
+
+- name: Restart laravel app command
+  command: "./init.sh {% if status.stdout|search('running') %}restart{% elif status.stdout|search('stopped')%}start{% endif %}"
+  args:
+    chdir: ~/php-laravel-project
